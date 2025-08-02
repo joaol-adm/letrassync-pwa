@@ -14,7 +14,7 @@ async function fetchLyrics() {
 
     if (!data || !data.lyrics) throw new Error("Letra não encontrada");
 
-    const lines = data.lyrics.split("\\n");
+    const lines = data.lyrics.split("\n");
     lyricsContainer.innerHTML = "";
     lines.forEach((line) => {
       const div = document.createElement("div");
@@ -27,4 +27,3 @@ async function fetchLyrics() {
     lyricsContainer.innerHTML = "❌ Erro ao buscar letra. Verifique nome artista/música.";
   }
 }
-
