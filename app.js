@@ -7,10 +7,17 @@ document.getElementById("searchForm").addEventListener("submit", async (e) => {
   lyricsElement.textContent = "Buscando...";
 
   try {
-    const response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
-    if (!response.ok) throw new Error("Letra não encontrada");
+    const apikey = "53b176e6c6c90e1f4fccc3a579736e03"; // chave demo pública da Vagalume
+    const url = `https://api.vagalume.com.br/search.php?art=${encodeURIComponent(artist)}&mus=${encodeURIComponent(title)}&apikey=${apikey}`;
+    const response = await fetch(url);
     const data = await response.json();
-    const lines = data.lyrics.split("\n");
+
+    if (!data.mus || data.mus.length === 0) {
+      throw new Error("Letra não encontrada");
+    }
+
+    const letra = data.mus[0].text;
+    const lines = letra.split("\n");
     lyricsElement.innerHTML = "";
     for (let line of lines) {
       const lineEl = document.createElement("div");
