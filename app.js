@@ -5,7 +5,7 @@ async function fetchLyrics() {
   lyricsContainer.innerHTML = "⏳ Buscando...";
 
   try {
-    const url = `https://lyrics.lewagon.ai/search?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`;
+    const url = `https://letrasync-proxy.vercel.app/api?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`;
     console.log("🔍 Requisitando:", url);
 
     const res = await fetch(url);
